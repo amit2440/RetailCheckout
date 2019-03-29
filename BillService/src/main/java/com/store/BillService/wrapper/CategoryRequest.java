@@ -9,8 +9,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Data
-@Builder
-public class CategoryRequest implements Serializable {
+public class CategoryRequest {
 
     @NotNull
     private String name;

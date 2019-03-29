@@ -13,8 +13,6 @@ import java.math.BigDecimal;
 @Table(name = "category")
 @Data
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
 public class Category implements Serializable {
 
     @Id
