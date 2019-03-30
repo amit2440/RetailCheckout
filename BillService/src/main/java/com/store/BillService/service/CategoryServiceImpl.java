@@ -14,12 +14,9 @@ public class CategoryServiceImpl implements CategoryService {
     @Autowired
     private CategoryRepo categoryRepo;
 
-    @Transactional
     @Override
     public boolean createCategory(Category category) {
-        Optional<Category> saved = Optional.ofNullable(categoryRepo.save(category));
-        if(saved.isPresent())
+        categoryRepo.save(category);
             return true;
-        return false;
     }
 }
