@@ -17,6 +17,11 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
+    /**
+     * Create category for products
+     * @param categoryRequest
+     * @return
+     */
     @PostMapping(value = {"/createCategory"})
     public ResponseEntity createCategory(
                 @RequestBody

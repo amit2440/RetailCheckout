@@ -16,14 +16,14 @@ import java.math.BigDecimal;
 public class ProductPriceResponse {
 
     @NotNull
-    private String productName;
+    private String barCodeId;
 
     @NotNull
     private BigDecimal price;
 
     public static ProductPriceResponse map(ProductPrice productPrice){
         return ProductPriceResponse.builder()
-                .productName(productPrice.getProductName())
+                .barCodeId(productPrice.getBarCodeId())
                 .price(productPrice.getPrice())
                 .build();
     }

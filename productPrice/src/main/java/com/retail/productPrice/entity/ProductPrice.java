@@ -25,8 +25,8 @@ public class ProductPrice implements Serializable{
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "productName", nullable = false)
-    private String productName;
+    @Column(name = "barCodeId", nullable = false)
+    private String barCodeId;
 
     @Column(name = "price", nullable = false)
     private BigDecimal price;

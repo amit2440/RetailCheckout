@@ -13,15 +13,15 @@ import java.math.BigDecimal;
 @Data
 public class ProductPriceRequest {
 
-    @NotNull(message = "Product Name cannot be null")
-    private String productName;
+    @NotNull(message = "Bar Code Id cannot be null")
+    private String barCodeId;
 
     @NotNull(message = "Product Price cannot be null")
     private BigDecimal price;
 
     public static ProductPrice map(ProductPriceRequest request){
         return ProductPrice.builder()
-                .productName(request.getProductName())
+                .barCodeId(request.getBarCodeId())
                 .price(request.getPrice())
                 .build();
     }

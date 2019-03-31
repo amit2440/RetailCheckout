@@ -25,15 +25,25 @@ public class ProductPriceController {
     @Autowired
     private ProductPriceService productPriceService;
 
-    @GetMapping(value = {"/price/{productName}"})
+    /**
+     * Get price for product
+     * @param barCodeId
+     * @return
+     */
+    @GetMapping(value = {"/price/{barCodeId}"})
     public ResponseEntity<ProductPriceResponse> getProductPrice(
-            @PathVariable(value = "productName")
-            String productName
+            @PathVariable(value = "barCodeId")
+            String barCodeId
     ){
-        ProductPrice productPrice = productPriceService.getProductPrice(productName);
+        ProductPrice productPrice = productPriceService.getProductPrice(barCodeId);
         return ResponseEntity.status(HttpStatus.FOUND).body(ProductPriceResponse.map(productPrice));
     }
 
+    /**
+     * Add price for product
+     * @param request
+     * @return
+     */
     @PostMapping(value = {"/addProductPrice"})
     public ResponseEntity createProductPrice(
             @Valid
@@ -44,7 +54,10 @@ public class ProductPriceController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-
+    /**
+     * Get list of all product prices
+     * @return
+     */
     @GetMapping(value = {"/allProductPrices"})
     public ResponseEntity<List<ProductPriceResponse>> getAllProductPrice(){
         List<ProductPrice> allProductPrice = productPriceService.getAllProductPrice();
@@ -52,6 +65,11 @@ public class ProductPriceController {
         return ResponseEntity.status(HttpStatus.FOUND).body(productPriceResponseList);
     }
 
+    /**
+     * Update price of a product
+     * @param request
+     * @return
+     */
     @PutMapping(value = {"/updateProductPrice"})
     public ResponseEntity updateProductPrice(
             @Valid

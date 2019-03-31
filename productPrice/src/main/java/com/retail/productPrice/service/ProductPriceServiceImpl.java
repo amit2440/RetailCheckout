@@ -22,8 +22,8 @@ public class ProductPriceServiceImpl  implements ProductPriceService {
     private ProductPriceDao productPriceDao;
 
     @Override
-    public ProductPrice getProductPrice(String name) {
-        Optional<ProductPrice> productPrice = Optional.ofNullable(productPriceDao.findPriceByName(name));
+    public ProductPrice getProductPrice(String barCodeId) {
+        Optional<ProductPrice> productPrice = Optional.ofNullable(productPriceDao.findPriceByBarCodeId(barCodeId));
         if(!productPrice.isPresent())
             throw new NoRecordFoundException("Product not found");
         return productPrice.get();
@@ -37,7 +37,7 @@ public class ProductPriceServiceImpl  implements ProductPriceService {
     @Transactional
     @Override
     public void updateProductPrice(ProductPrice productPrice) {
-        Optional<ProductPrice> productPrice1 = findPriceByName(productPrice);
+        Optional<ProductPrice> productPrice1 = findPriceByBarCodeId(productPrice);
         if(!productPrice1.isPresent())
             throw new ProductPriceValidationException("Product does not exist");
         productPriceDao.updatePrice(productPrice.getPrice(),productPrice1.get().getId());
@@ -45,12 +45,12 @@ public class ProductPriceServiceImpl  implements ProductPriceService {
 
     @Override
     public void createProductPrice(ProductPrice productPrice) {
-        if(findPriceByName(productPrice).isPresent())
+        if(findPriceByBarCodeId(productPrice).isPresent())
             throw new ProductPriceValidationException("Product already exists");
         productPriceDao.save(productPrice);
     }
 
-    private Optional<ProductPrice> findPriceByName(ProductPrice productPrice) {
-        return Optional.ofNullable(productPriceDao.findPriceByName(productPrice.getProductName()));
+    private Optional<ProductPrice> findPriceByBarCodeId(ProductPrice productPrice) {
+        return Optional.ofNullable(productPriceDao.findPriceByBarCodeId(productPrice.getBarCodeId()));
     }
 }

@@ -16,11 +16,8 @@ import java.math.BigDecimal;
 @Repository
 public interface ProductPriceDao extends JpaRepository<ProductPrice, Long>{
 
-    @Query("SELECT p FROM ProductPrice p WHERE p.productName = :name")
-    ProductPrice findPriceByName(@Param("name") String name);
-/*
-    @Query("SELECT p FROM ProductPrice p ")
-    List<ProductPrice> findAllByProductName();*/
+    @Query("SELECT p FROM ProductPrice p WHERE p.barCodeId = :barCodeId")
+    ProductPrice findPriceByBarCodeId(@Param("barCodeId") String barCodeId);
 
     @Modifying
     @Query("update ProductPrice p set p.price = ?1 where p.id = ?2")

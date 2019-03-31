@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface ProductPriceService {
 
-    ProductPrice getProductPrice(String name);
+    ProductPrice getProductPrice(String barCodeId);
     List<ProductPrice> getAllProductPrice();
     void updateProductPrice(ProductPrice productPrice);
     void createProductPrice(ProductPrice productPrice);

@@ -8,12 +8,15 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "category")
 @Data
 @Builder
-public class Category implements Serializable {
+@AllArgsConstructor
+public class Category{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,5 +28,14 @@ public class Category implements Serializable {
 
     @Column(name = "salesTax", nullable = false)
     private BigDecimal salesTax;
+
+    /*@OneToMany(
+            mappedBy = "category",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Product> products = new ArrayList<>();*/
+
+    Category(){}
 
 }
